@@ -20,7 +20,14 @@ public class VilaE_SaquicelaJ_SH {
         }else   {
             var i= false;
         }
+        
+         if (true) {
+          var i = true;
+        }else   {
+            var i= false;
+        }
         System.out.println("Gil ");
+        System.out.println("gil x2");
 
         
     }
