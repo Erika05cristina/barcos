@@ -8,8 +8,8 @@ package com.mycompany.vilae_saquicelaj_sh;
  *
  * @author Kristina
  */
-public class Prueba {
+public class ashh {
     public static void main(String[] args) {
-        System.out.println("holi");
+        System.out.println("hahajja");
     }
 }
