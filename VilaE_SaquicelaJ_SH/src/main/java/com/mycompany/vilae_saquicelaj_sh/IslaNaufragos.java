@@ -13,9 +13,9 @@ import java.util.logging.Logger;
  * @author Jonna
  */
 public class IslaNaufragos {
-    int numNaufragos;
-    boolean ocupado = false;
-    Isla principal;
+    private int numNaufragos;
+    private boolean ocupado = false;
+    private Isla principal;
 
     public IslaNaufragos(Isla principal, int numNaufragos) {
         this.principal = principal;
@@ -31,12 +31,7 @@ public class IslaNaufragos {
                 principal.llegarIsla(1);
                 ocupado = true;
                 notifyAll();
-                try {
-                    
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                
             }
                         
         }else{
@@ -96,6 +91,15 @@ public class IslaNaufragos {
             }
         }
     }
+
+    public boolean isOcupado() {
+        return ocupado;
+    }
+
+    public void setOcupado(boolean ocupado) {
+        this.ocupado = ocupado;
+    }
+    
     
     
 }
