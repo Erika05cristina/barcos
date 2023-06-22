@@ -24,6 +24,7 @@ public class IslaNaufragos {
     
     
     public synchronized void notificar(){
+        ocupado = false;
         notifyAll();
     }
     public synchronized void desenbarcoUno(int limite){        
@@ -56,9 +57,11 @@ public class IslaNaufragos {
                 notifyAll();                
             }
                         
-        }else{
+        }else{            
+            
             try {
                 //Hay un barco en el puerto
+                
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
