@@ -37,7 +37,7 @@ public class Isla extends javax.swing.JFrame {
 
     Boolean inicioJuego = false;
     Boolean pause = false;
-
+    
     /**
      * Creates new form Isla
      */
@@ -108,7 +108,7 @@ public class Isla extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtBUTiempo = new javax.swing.JTextField();
         txtBDTiempo = new javax.swing.JTextField();
-        txtB3Tiempo = new javax.swing.JTextField();
+        txtBTTiempo = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -283,9 +283,9 @@ public class Isla extends javax.swing.JFrame {
 
         jLabel11.setText("Tiempo ( s )");
 
-        txtB3Tiempo.addActionListener(new java.awt.event.ActionListener() {
+        txtBTTiempo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtB3TiempoActionPerformed(evt);
+                txtBTTiempoActionPerformed(evt);
             }
         });
 
@@ -400,7 +400,7 @@ public class Isla extends javax.swing.JFrame {
                         .addContainerGap(62, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtB3Tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtBTTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(pPuerto, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -526,7 +526,7 @@ public class Isla extends javax.swing.JFrame {
                                             .addComponent(lbB3Naufragos)
                                             .addComponent(jLabel24)
                                             .addComponent(txtBTCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(txtB3Tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                            .addComponent(txtBTTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                         .addGap(3, 3, 3)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel19)
@@ -542,7 +542,7 @@ public class Isla extends javax.swing.JFrame {
 
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         if(inicioJuego){
-            
+            pause = false;
         }else{
             inicioJuego = true;
             iniciaElJuego();
@@ -557,9 +557,9 @@ public class Isla extends javax.swing.JFrame {
         pause = true;
     }//GEN-LAST:event_btPararActionPerformed
 
-    private void txtB3TiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtB3TiempoActionPerformed
+    private void txtBTTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBTTiempoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtB3TiempoActionPerformed
+    }//GEN-LAST:event_txtBTTiempoActionPerformed
 
     /**
      * @param args the command line arguments
@@ -662,7 +662,7 @@ public class Isla extends javax.swing.JFrame {
                     System.out.println("Se desocupo el barco Uno");
 
                     this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
-                    iNaufragos.notificar();
+                    
                     break;
 
                 case 2:
@@ -705,17 +705,27 @@ public class Isla extends javax.swing.JFrame {
         int limiteB1 = Integer.valueOf(this.txtBUCapacidad.getText());
         int limiteB2 = Integer.valueOf(this.txtBDCapacidad.getText());
         int limiteB3 = Integer.valueOf(this.txtBTCapacidad.getText());
+        
+        int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
+        int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
+        int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
 
         this.lbNaufragos.setText(txtCapacidadIsla.getText());
 
         iNaufragos = new IslaNaufragos(islita, numNaufragos);
-        hB1 = new HiloBarcoUno(iNaufragos, limiteB1);
-        hB2 = new HiloBarcoDos(iNaufragos, limiteB2);
-        hB3 = new HiloBarcoTres(iNaufragos, limiteB3);
+        hB1 = new HiloBarcoUno(iNaufragos, limiteB1,tB1);
+        hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
+        hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
 
         hB1.start();
         hB2.start();
         hB3.start();
+        
+        // Inicio de Tablas
+            // BARCO 1
+       // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
+        //this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
+        
     }
 
 
@@ -767,10 +777,10 @@ public class Isla extends javax.swing.JFrame {
     private javax.swing.JPanel pBUno;
     private javax.swing.JPanel pIsla;
     private javax.swing.JPanel pPuerto;
-    private javax.swing.JTextField txtB3Tiempo;
     private javax.swing.JTextField txtBDCapacidad;
     private javax.swing.JTextField txtBDTiempo;
     private javax.swing.JTextField txtBTCapacidad;
+    private javax.swing.JTextField txtBTTiempo;
     private javax.swing.JTextField txtBUCapacidad;
     private javax.swing.JTextField txtBUTiempo;
     private javax.swing.JTextField txtCapacidadIsla;

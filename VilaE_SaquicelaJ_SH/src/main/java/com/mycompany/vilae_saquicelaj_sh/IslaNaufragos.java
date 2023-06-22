@@ -27,14 +27,22 @@ public class IslaNaufragos {
         ocupado = false;
         notifyAll();
     }
-    public synchronized void desenbarcoUno(int limite){        
+    public synchronized void desenbarcoUno(int limite, int tiempo){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
                 System.out.println("Capacidad del barco 1: " + limite);
                 numNaufragos -= limite;
                 principal.llegarIsla(1);
                 ocupado = true;                
-                notifyAll();
+                notifyAll();                
+                try {
+                    Thread.sleep(tiempo);
+                    ocupado = false;
+                    notifyAll();
+                    
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 
             }
                         
@@ -47,7 +55,7 @@ public class IslaNaufragos {
             }
         }
     }
-    public synchronized void desenbarcoDos(int limite){        
+    public synchronized void desenbarcoDos(int limite, int tiempo){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
                 System.out.println("Capacidad del barco 2: " + limite);
@@ -68,7 +76,7 @@ public class IslaNaufragos {
             }
         }
     }
-    public synchronized void desenbarcoTres(int limite){        
+    public synchronized void desenbarcoTres(int limite, int tiempo){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
                 System.out.println("Capacidad del barco 3: " + limite);
@@ -102,6 +110,14 @@ public class IslaNaufragos {
 
     public void setNumNaufragos(int numNaufragos) {
         this.numNaufragos = numNaufragos;
+    }
+
+    public Isla getPrincipal() {
+        return principal;
+    }
+
+    public void setPrincipal(Isla principal) {
+        this.principal = principal;
     }
     
     

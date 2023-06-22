@@ -14,22 +14,23 @@ import java.util.logging.Logger;
 public class HiloBarcoTres extends Thread{
     IslaNaufragos isla;
     int capacidadMaxima;
+    int tiempo;
 
-    public HiloBarcoTres(IslaNaufragos isla, int capacidadMaxima) {
+    public HiloBarcoTres(IslaNaufragos isla, int capacidadMaxima, int tiempo) {
         this.isla = isla;
         this.capacidadMaxima = capacidadMaxima;
+        this.tiempo = tiempo;
     }
 
     @Override
-    public void run() {
-        int tiempo = 0;
+    public void run() {        
 
-        while (true) {
+        while (isla.getPrincipal().pause == false) {
             //tiempo = (Math.random()*(valorMinimo - valorMaximo)+ ValorMaximo);
             int capacidad = (int) (Math.random() * (capacidadMaxima - 1) + capacidadMaxima);
             try {                
                 Thread.sleep(4);
-                isla.desenbarcoTres(capacidad);
+                isla.desenbarcoTres(capacidad, (tiempo * 1000));
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(HiloBarcoUno.class.getName()).log(Level.SEVERE, null, ex);
