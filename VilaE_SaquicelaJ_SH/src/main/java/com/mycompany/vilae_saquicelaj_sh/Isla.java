@@ -37,7 +37,7 @@ public class Isla extends javax.swing.JFrame {
 
     Boolean inicioJuego = false;
     Boolean pause = false;
-    
+
     /**
      * Creates new form Isla
      */
@@ -340,42 +340,41 @@ public class Isla extends javax.swing.JFrame {
                                             .addComponent(txtBDCapacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(pBUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(jLabel2)
-                                        .addComponent(jLabel3))
-                                    .addGap(35, 35, 35)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addComponent(lbB1Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addComponent(lbB1Tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel4)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(lbB1Naufragos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(jLabel13)
-                                        .addGap(18, 18, 18)
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                            .addComponent(lbB2Tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lbB2Estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(lbB1Capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                        .addGroup(layout.createSequentialGroup()
-                            .addComponent(pBTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel9)
-                                .addComponent(jLabel12)
-                                .addGroup(layout.createSequentialGroup()
-                                    .addComponent(jLabel19)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pBUno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel4)
                                     .addGap(18, 18, 18)
-                                    .addComponent(lbB3Capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                                    .addComponent(lbB1Naufragos, javax.swing.GroupLayout.PREFERRED_SIZE, 52, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                    .addComponent(jLabel13)
+                                    .addGap(18, 18, 18)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(lbB2Tiempo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbB2Estado, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(lbB1Capacidad, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3))
+                                .addGap(35, 35, 35)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(lbB1Tiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(lbB1Estado, javax.swing.GroupLayout.PREFERRED_SIZE, 67, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(pBTres, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel12)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel19)
+                                .addGap(18, 18, 18)
+                                .addComponent(lbB3Capacidad, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -541,9 +540,9 @@ public class Isla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
-        if(inicioJuego){
+        if (inicioJuego) {
             pause = false;
-        }else{
+        } else {
             inicioJuego = true;
             iniciaElJuego();
         }
@@ -651,49 +650,38 @@ public class Isla extends javax.swing.JFrame {
 
     }
 
-    public void llegarIsla(int barco) {
-        try {
+    public void llegarIsla(int barco) {        
+        switch (barco) {
+            case 1:
+                lbPuerto.setIcon(imgBarcoUno);
+                this.lbB1Estado.setText("Ocupado");
+                System.out.println("Se desocupo el barco Uno");                
+                break;
 
-            switch (barco) {
-                case 1:
-                    lbPuerto.setIcon(imgBarcoUno);
-                    Thread.sleep(3000);
-                    //iNaufragos.setOcupado(false);
-                    System.out.println("Se desocupo el barco Uno");
+            case 2:
+                lbPuerto.setIcon(imgBarcoDos);
+                this.lbB2Estado.setText("Ocupado");
+                System.out.println("Se desocupo el barco Dos");                
+                break;
 
-                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
-                    
-                    break;
-
-                case 2:
-                    lbPuerto.setIcon(imgBarcoDos);
-                    Thread.sleep(3000);
-                    //iNaufragos.setOcupado(false);
-                    System.out.println("Se desocupo el barco Dos");
-
-                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
-                    iNaufragos.notificar();
-                    break;
-
-                case 3:
-                    lbPuerto.setIcon(imgBarcoTres);
-                    Thread.sleep(3000);
-                    //iNaufragos.setOcupado(false);
-                    System.out.println("Se desocupo el barco Tres");
-
-                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
-                    iNaufragos.notificar();
-                    break;
-            }
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Isla.class.getName()).log(Level.SEVERE, null, ex);
+            case 3:
+                lbPuerto.setIcon(imgBarcoTres);
+                this.lbB3Estado.setText("Ocupado");
+                System.out.println("Se desocupo el barco Tres");               
+                break;
         }
-
+        this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
         repaint();
     }
 
     public void espera(int barco) {
-
+        switch(barco){
+            case 1: this.lbB1Estado.setText("Esperando"); break;
+            case 2: this.lbB2Estado.setText("Esperando"); break;
+            case 3: this.lbB3Estado.setText("Esperando"); break;
+            
+            
+        }
     }
 
     public void desembarcar() {
@@ -705,7 +693,7 @@ public class Isla extends javax.swing.JFrame {
         int limiteB1 = Integer.valueOf(this.txtBUCapacidad.getText());
         int limiteB2 = Integer.valueOf(this.txtBDCapacidad.getText());
         int limiteB3 = Integer.valueOf(this.txtBTCapacidad.getText());
-        
+
         int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
         int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
         int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
@@ -713,19 +701,29 @@ public class Isla extends javax.swing.JFrame {
         this.lbNaufragos.setText(txtCapacidadIsla.getText());
 
         iNaufragos = new IslaNaufragos(islita, numNaufragos);
-        hB1 = new HiloBarcoUno(iNaufragos, limiteB1,tB1);
+        hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
 
         hB1.start();
         hB2.start();
         hB3.start();
-        
+
         // Inicio de Tablas
-            // BARCO 1
-       // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
+        // BARCO 1
+        this.lbB1Capacidad.setText(String.valueOf(limiteB1));
+        this.lbB1Tiempo.setText(String.valueOf(tB1));
+
+        //BARCO 2
+        this.lbB2Capacidad.setText(String.valueOf(limiteB2));
+        this.lbB2Tiempo.setText(String.valueOf(tB2));
+
+        //BARCO 3
+        this.lbB3Capacidad.setText(String.valueOf(limiteB3));
+        this.lbB3Tiempo.setText(String.valueOf(tB3));
+
+        // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
         //this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
-        
     }
 
 
