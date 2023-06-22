@@ -23,7 +23,9 @@ public class IslaNaufragos {
     }
     
     
-    
+    public void notificar(){
+        notifyAll();
+    }
     public synchronized void desenbarcoUno(int limite){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {

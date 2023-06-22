@@ -540,14 +540,24 @@ public class Isla extends javax.swing.JFrame {
                 case 1:
                     lbPuerto.setIcon(imgBarcoUno);
                     Thread.sleep(3000);
-                    
+                    iNaufragos.setOcupado(false);
+                    System.out.println("Se desocupo el barco Uno");
+                    iNaufragos.notifyAll();
                     break;
 
                 case 2:
                     lbPuerto.setIcon(imgBarcoDos);
+                    Thread.sleep(3000);
+                    iNaufragos.setOcupado(false);
+                    System.out.println("Se desocupo el barco Dos");
+                    iNaufragos.notifyAll();
                     break;
                 case 3:
                     lbPuerto.setIcon(imgBarcoTres);
+                    Thread.sleep(3000);
+                    iNaufragos.setOcupado(false);
+                    System.out.println("Se desocupo el barco Tres");
+                    iNaufragos.notifyAll();
                     break;
             }
         } catch (InterruptedException ex) {
