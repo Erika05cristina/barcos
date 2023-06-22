@@ -103,7 +103,7 @@
                                   <Group type="102" attributes="0">
                                       <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="32767" attributes="0"/>
-                                      <Component id="jLabel11" min="-2" pref="54" max="-2" attributes="0"/>
+                                      <Component id="lbNaufragos" min="-2" pref="54" max="-2" attributes="0"/>
                                   </Group>
                                   <Component id="pIsla" min="-2" max="-2" attributes="0"/>
                                   <Group type="102" attributes="0">
@@ -199,7 +199,7 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel10" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel11" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="lbNaufragos" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
@@ -415,7 +415,7 @@
         <Property name="text" type="java.lang.String" value="Personas"/>
       </Properties>
     </Component>
-    <Component class="javax.swing.JLabel" name="jLabel11">
+    <Component class="javax.swing.JLabel" name="lbNaufragos">
       <Properties>
         <Property name="text" type="java.lang.String" value="0"/>
       </Properties>
@@ -522,6 +522,9 @@
       <Properties>
         <Property name="text" type="java.lang.String" value="Parar"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btPararActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel26">
       <Properties>

@@ -23,15 +23,16 @@ public class IslaNaufragos {
     }
     
     
-    public void notificar(){
+    public synchronized void notificar(){
         notifyAll();
     }
     public synchronized void desenbarcoUno(int limite){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
+                System.out.println("Capacidad del barco 1: " + limite);
                 numNaufragos -= limite;
                 principal.llegarIsla(1);
-                ocupado = true;
+                ocupado = true;                
                 notifyAll();
                 
             }
@@ -48,16 +49,11 @@ public class IslaNaufragos {
     public synchronized void desenbarcoDos(int limite){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
+                System.out.println("Capacidad del barco 2: " + limite);
                 numNaufragos -= limite;
                 principal.llegarIsla(2);
                 ocupado = true;
-                notifyAll();
-                try {
-                    
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                notifyAll();                
             }
                         
         }else{
@@ -72,16 +68,11 @@ public class IslaNaufragos {
     public synchronized void desenbarcoTres(int limite){        
         if( (ocupado == false)){
             if (limite < numNaufragos) {
+                System.out.println("Capacidad del barco 3: " + limite);
                 numNaufragos -= limite;
                 principal.llegarIsla(3);
                 ocupado = true;
-                notifyAll();
-                try {
-                    
-                    Thread.sleep(3000);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
-                }
+                notifyAll();                
             }
                         
         }else{
@@ -100,6 +91,14 @@ public class IslaNaufragos {
 
     public void setOcupado(boolean ocupado) {
         this.ocupado = ocupado;
+    }
+
+    public int getNumNaufragos() {
+        return numNaufragos;
+    }
+
+    public void setNumNaufragos(int numNaufragos) {
+        this.numNaufragos = numNaufragos;
     }
     
     

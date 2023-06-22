@@ -69,7 +69,7 @@ public class Isla extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        lbNaufragos = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
@@ -184,7 +184,7 @@ public class Isla extends javax.swing.JFrame {
 
         jLabel10.setText("Personas");
 
-        jLabel11.setText("0");
+        lbNaufragos.setText("0");
 
         jLabel12.setText("Estado");
 
@@ -227,6 +227,11 @@ public class Isla extends javax.swing.JFrame {
         });
 
         btParar.setText("Parar");
+        btParar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btPararActionPerformed(evt);
+            }
+        });
 
         jLabel26.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
         jLabel26.setText("Isla");
@@ -309,7 +314,7 @@ public class Isla extends javax.swing.JFrame {
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel10)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                        .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(lbNaufragos, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addComponent(pIsla, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel14)
@@ -381,7 +386,7 @@ public class Isla extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel1)
                             .addComponent(jLabel10)
-                            .addComponent(jLabel11))
+                            .addComponent(lbNaufragos))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -429,6 +434,8 @@ public class Isla extends javax.swing.JFrame {
         int limiteB2 = Integer.valueOf(this.txtBDCapacidad.getText());
         int limiteB3 = Integer.valueOf(this.txtBTCapacidad.getText());
         
+        this.lbNaufragos.setText(txtCapacidadIsla.getText());
+        
         iNaufragos = new IslaNaufragos(islita, numNaufragos);
         hB1 = new HiloBarcoUno(iNaufragos,limiteB1);
         hB2 = new HiloBarcoDos(iNaufragos,limiteB2);
@@ -442,6 +449,10 @@ public class Isla extends javax.swing.JFrame {
     private void txtCapacidadIslaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadIslaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCapacidadIslaActionPerformed
+
+    private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btPararActionPerformed
 
     /**
      * @param args the command line arguments
@@ -542,7 +553,9 @@ public class Isla extends javax.swing.JFrame {
                     Thread.sleep(3000);
                     iNaufragos.setOcupado(false);
                     System.out.println("Se desocupo el barco Uno");
-                    iNaufragos.notifyAll();
+                    
+                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
+                    iNaufragos.notificar();
                     break;
 
                 case 2:
@@ -550,14 +563,19 @@ public class Isla extends javax.swing.JFrame {
                     Thread.sleep(3000);
                     iNaufragos.setOcupado(false);
                     System.out.println("Se desocupo el barco Dos");
-                    iNaufragos.notifyAll();
+                    
+                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
+                    iNaufragos.notificar();
                     break;
+                    
                 case 3:
                     lbPuerto.setIcon(imgBarcoTres);
                     Thread.sleep(3000);
                     iNaufragos.setOcupado(false);
                     System.out.println("Se desocupo el barco Tres");
-                    iNaufragos.notifyAll();
+                    
+                    this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
+                    iNaufragos.notificar();
                     break;
             }
         } catch (InterruptedException ex) {
@@ -576,7 +594,6 @@ public class Isla extends javax.swing.JFrame {
     private javax.swing.JButton btParar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
@@ -601,6 +618,7 @@ public class Isla extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel lbNaufragos;
     private javax.swing.JLabel lbTiempoRestante;
     private javax.swing.JPanel pBDos;
     private javax.swing.JPanel pBTres;
