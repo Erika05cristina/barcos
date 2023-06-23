@@ -7,7 +7,7 @@ package com.mycompany.vilae_saquicelaj_sh;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.Timer;
+
 import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -15,6 +15,7 @@ import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -218,7 +219,7 @@ public class Isla extends javax.swing.JFrame {
 
         lbTiempoRestante.setText("0");
 
-        jLabel15.setText("ms");
+        jLabel15.setText("s");
 
         jLabel16.setText("Capacidad");
 
@@ -555,43 +556,49 @@ public class Isla extends javax.swing.JFrame {
         switch (barco) {
             case 1:
                 temporizador(tB1);
-
+                iniciarTemp();
                 break;
             case 2:
 
                 temporizador(tB2);
-
+                iniciarTemp();
                 break;
             case 3:
 
                 temporizador(tB3);
-
+                iniciarTemp();
                 break;
 
         }
 
     }
-Timer timer = new Timer();
+    Timer t;
+
+    int contador;
+
     public void temporizador(int tiempo) {
+        contador = tiempo;
+        t = new Timer(1000, new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
 
-        
-        TimerTask tarea = new TimerTask() {
-            int contador = tiempo;
-
-            public void run() {
                 if (contador >= 0) {
                     lbTiempoRestante.setText(String.valueOf(contador));
                     contador--;
                 } else {
-//                    lbTiempoRestante.setText("0");
-                    timer.cancel(); // Detener el temporizador
+                    t.stop();
                 }
             }
-        };
-
-        timer.scheduleAtFixedRate(tarea, 0, 1000);
+        });
     }
 
+    public void iniciarTemp() {
+        t.start();
+    }
+
+    public void pararTemp() {
+        t.stop();
+    }
 
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         pause = false;
@@ -614,7 +621,7 @@ Timer timer = new Timer();
         hB2.stop();
         hB3.stop();
         JOptionPane.showMessageDialog(null, "Los barcos se detendrán en breve");
-        
+
     }//GEN-LAST:event_btPararActionPerformed
 
     private void txtBTTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBTTiempoActionPerformed
@@ -756,7 +763,7 @@ Timer timer = new Timer();
             case 3:
                 this.lbB3Estado.setText("Esperando");
                 break;
-
+                
         }
     }
 
@@ -869,7 +876,7 @@ Timer timer = new Timer();
         this.lbB3Capacidad.setText(String.valueOf(limiteB3));
         this.lbB3Tiempo.setText(String.valueOf(tB3));
 
-        // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
+//        this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
 //        this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
     }
 

@@ -532,7 +532,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel15">
       <Properties>
-        <Property name="text" type="java.lang.String" value="ms"/>
+        <Property name="text" type="java.lang.String" value="s"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel16">
