@@ -543,7 +543,7 @@ public class Isla extends javax.swing.JFrame {
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         if (inicioJuego) {
             pause = false;
-        } else {            
+        } else {
             controlErrores();
         }
     }//GEN-LAST:event_btIniciarActionPerformed
@@ -650,24 +650,24 @@ public class Isla extends javax.swing.JFrame {
 
     }
 
-    public void llegarIsla(int barco) {        
+    public void llegarIsla(int barco) {
         switch (barco) {
             case 1:
                 lbPuerto.setIcon(imgBarcoUno);
                 this.lbB1Estado.setText("Ocupado");
-                System.out.println("Se desocupo el barco Uno");                
+                System.out.println("Se desocupo el barco Uno");
                 break;
 
             case 2:
                 lbPuerto.setIcon(imgBarcoDos);
                 this.lbB2Estado.setText("Ocupado");
-                System.out.println("Se desocupo el barco Dos");                
+                System.out.println("Se desocupo el barco Dos");
                 break;
 
             case 3:
                 lbPuerto.setIcon(imgBarcoTres);
                 this.lbB3Estado.setText("Ocupado");
-                System.out.println("Se desocupo el barco Tres");               
+                System.out.println("Se desocupo el barco Tres");
                 break;
         }
         this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
@@ -675,68 +675,84 @@ public class Isla extends javax.swing.JFrame {
     }
 
     public void espera(int barco) {
-        switch(barco){
-            case 1: this.lbB1Estado.setText("Esperando"); break;
-            case 2: this.lbB2Estado.setText("Esperando"); break;
-            case 3: this.lbB3Estado.setText("Esperando"); break;
-            
-            
+        switch (barco) {
+            case 1:
+                this.lbB1Estado.setText("Esperando");
+                break;
+            case 2:
+                this.lbB2Estado.setText("Esperando");
+                break;
+            case 3:
+                this.lbB3Estado.setText("Esperando");
+                break;
+
         }
     }
 
-    public void desembarcar() {
-
+    public void desembarcar(int barco) {
+        switch (barco) {
+            case 1:
+                this.lbB1Estado.setText("Ocupado");
+                break;
+            case 2:
+                this.lbB1Estado.setText("Ocupado");
+                break;
+            case 3:
+                this.lbB1Estado.setText("Ocupado");
+                break;
+        }
     }
-    public void controlErrores(){
-        
-        if(this.txtBUCapacidad.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 1");
+
+    public void controlErrores() {
+
+        if (this.txtBUCapacidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 1");
             this.txtBUCapacidad.setFocusable(true);
             return;
         }
-        
-        if(this.txtBDCapacidad.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 2");
+
+        if (this.txtBDCapacidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 2");
             this.txtBUCapacidad.setFocusable(true);
             return;
         }
-        
-        if(this.txtBDCapacidad.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 3");
+
+        if (this.txtBDCapacidad.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 3");
             this.txtBTCapacidad.setFocusable(true);
             return;
         }
         // TIEMPO
-        if(this.txtBUTiempo.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 1");
+        if (this.txtBUTiempo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 1");
             this.txtBUTiempo.setFocusable(true);
             return;
         }
-        
-        if(this.txtBDTiempo.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 2");
+
+        if (this.txtBDTiempo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 2");
             this.txtBUTiempo.setFocusable(true);
             return;
         }
-        
-        if(this.txtBTTiempo.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto!\nBarco 3");
+
+        if (this.txtBTTiempo.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto!\nBarco 3");
             this.txtBTTiempo.setFocusable(true);
             return;
         }
         //CAPACIDAD ISLA
-        if(this.txtCapacidadIsla.getText().equals("")){
-            JOptionPane.showMessageDialog(null,"Dato incompleto Capacidad Isla!");
+        if (this.txtCapacidadIsla.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Dato incompleto Capacidad Isla!");
             //this.txtCapacidadIsla.setCursor();
-            
+
             return;
         }
-        
+
         inicioJuego = true;
         iniciaElJuego();
-        
+
     }
-    
+
     public void iniciaElJuego() {
         int numNaufragos = Integer.valueOf(this.txtCapacidadIsla.getText());
         int limiteB1 = Integer.valueOf(this.txtBUCapacidad.getText());
