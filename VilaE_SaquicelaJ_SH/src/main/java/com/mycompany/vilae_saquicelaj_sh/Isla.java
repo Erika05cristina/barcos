@@ -545,11 +545,11 @@ public class Isla extends javax.swing.JFrame {
         pause = false;
         if (!inicioJuego) {
             this.btParar.setEnabled(true);
-            controlErrores();            
-        }else{
+            controlErrores();
+        } else {
             reanudarJuego();
         }
-        
+
     }//GEN-LAST:event_btIniciarActionPerformed
 
     private void txtCapacidadIslaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadIslaActionPerformed
@@ -561,7 +561,7 @@ public class Isla extends javax.swing.JFrame {
         hB1.stop();
         hB2.stop();
         hB3.stop();
-        JOptionPane.showMessageDialog(null,"Los barcos se detendrán en breve");
+        JOptionPane.showMessageDialog(null, "Los barcos se detendrán en breve");
     }//GEN-LAST:event_btPararActionPerformed
 
     private void txtBTTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBTTiempoActionPerformed
@@ -711,46 +711,72 @@ public class Isla extends javax.swing.JFrame {
 
         if (this.txtBUCapacidad.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 1");
-            this.txtBUCapacidad.setFocusable(true);
             return;
         }
 
         if (this.txtBDCapacidad.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 2");
-            this.txtBUCapacidad.setFocusable(true);
             return;
         }
 
         if (this.txtBDCapacidad.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 3");
-            this.txtBTCapacidad.setFocusable(true);
             return;
         }
         // TIEMPO
         if (this.txtBUTiempo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 1");
-            this.txtBUTiempo.setFocusable(true);
             return;
         }
 
         if (this.txtBDTiempo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto! \nBarco 2");
-            this.txtBUTiempo.setFocusable(true);
             return;
         }
 
         if (this.txtBTTiempo.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto!\nBarco 3");
-            this.txtBTTiempo.setFocusable(true);
             return;
         }
         //CAPACIDAD ISLA
         if (this.txtCapacidadIsla.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Dato incompleto Capacidad Isla!");
-            //this.txtCapacidadIsla.setCursor();
-
             return;
         }
+        //SOLO NUMEROS
+        if (!this.txtBUCapacidad.getText().trim().matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(null, "Datos invalidos! \nBarco 1");
+            return;
+        }
+
+        if (!this.txtBDCapacidad.getText().trim().matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(null, "Datos invalidos! \nBarco 2");
+            return;
+        }
+        if (!this.txtBTCapacidad.getText().matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(null, "Datos invalidos! \nBarco 3");
+            return;
+        }
+        if (!this.txtCapacidadIsla.getText().matches("[0-9]*")) {
+            JOptionPane.showMessageDialog(null, "Datos invalidos! \nIsla");
+            return;
+        }
+            //tiempo
+        if (!this.txtBUTiempo.getText().matches("[1-9]")) {
+            JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 1");
+            return;
+        }
+        
+        if (!this.txtBDTiempo.getText().matches("[1-9]")) {
+            JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 2");
+            return;
+        }
+        
+        if (!this.txtBTTiempo.getText().matches("[1-9]")) {
+            JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 3");
+            return;
+        }
+
         inicioJuego = true;
         iniciaElJuego();
 
@@ -822,7 +848,7 @@ public class Isla extends javax.swing.JFrame {
 
         int tB1 = Integer.valueOf(this.lbB1Tiempo.getText());
         int tB2 = Integer.valueOf(this.lbB2Tiempo.getText());
-        int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());        
+        int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());
 
         iNaufragos = new IslaNaufragos(islita, numNaufragos);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
