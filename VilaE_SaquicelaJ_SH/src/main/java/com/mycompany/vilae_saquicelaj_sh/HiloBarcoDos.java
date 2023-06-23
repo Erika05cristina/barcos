@@ -28,7 +28,7 @@ public class HiloBarcoDos extends Thread{
 
         while (isla.getPrincipal().pause == false) {
             //tiempo = (Math.random()*(valorMinimo - valorMaximo)+ ValorMaximo);
-            int capacidad = (int) (Math.random() * (capacidadMaxima - 1) + capacidadMaxima);
+            int capacidad = (int) (Math.random() * capacidadMaxima);
             try {                
                 Thread.sleep(4);
                 isla.desenbarcoDos(capacidad,(tiempo * 1000));

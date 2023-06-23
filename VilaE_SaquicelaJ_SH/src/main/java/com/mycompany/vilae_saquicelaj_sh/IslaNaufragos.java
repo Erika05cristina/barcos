@@ -35,7 +35,7 @@ public class IslaNaufragos {
                     return;
                 }
 
-                principal.llegarIsla(1);
+                principal.llegarIsla(1,limite);
                 ocupado = true;
                 System.out.println("1) Se notificará que ocupado = " + ocupado);
                 notifyAll();
@@ -73,7 +73,7 @@ public class IslaNaufragos {
                 }
                 
 
-                principal.llegarIsla(2);
+                principal.llegarIsla(2,limite);
                 ocupado = true;
                 System.out.println("2) Se notificará que ocupado = " + ocupado);
                 notifyAll();
@@ -111,7 +111,7 @@ public class IslaNaufragos {
                     return;
                 }                
 
-                principal.llegarIsla(3);
+                principal.llegarIsla(3,limite);
                 ocupado = true;
                 System.out.println("3) Se notificará que ocupado = " + ocupado);
                 notifyAll();

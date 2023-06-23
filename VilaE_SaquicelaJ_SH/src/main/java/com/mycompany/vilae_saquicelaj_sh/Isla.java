@@ -101,7 +101,7 @@ public class Isla extends javax.swing.JFrame {
         lbB1Capacidad = new javax.swing.JLabel();
         lbB2Estado = new javax.swing.JLabel();
         lbB2Tiempo = new javax.swing.JLabel();
-        lbB2Naufrago = new javax.swing.JLabel();
+        lbB2Naufragos = new javax.swing.JLabel();
         lbB2Capacidad = new javax.swing.JLabel();
         lbB3Estado = new javax.swing.JLabel();
         lbB3Tiempo = new javax.swing.JLabel();
@@ -271,7 +271,7 @@ public class Isla extends javax.swing.JFrame {
 
         lbB2Tiempo.setText("00:00");
 
-        lbB2Naufrago.setText("00");
+        lbB2Naufragos.setText("00");
 
         lbB2Capacidad.setText("0");
 
@@ -314,7 +314,7 @@ public class Isla extends javax.swing.JFrame {
                                             .addGroup(layout.createSequentialGroup()
                                                 .addComponent(jLabel8)
                                                 .addGap(18, 18, 18)
-                                                .addComponent(lbB2Naufrago, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                                .addComponent(lbB2Naufragos, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                         .addComponent(jLabel22))
                                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
@@ -498,7 +498,7 @@ public class Isla extends javax.swing.JFrame {
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel8)
                                             .addComponent(jLabel26)
-                                            .addComponent(lbB2Naufrago))
+                                            .addComponent(lbB2Naufragos))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                                             .addComponent(jLabel16)
@@ -544,7 +544,9 @@ public class Isla extends javax.swing.JFrame {
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         if (inicioJuego) {
             pause = false;
+            
         } else {
+            this.btParar.setEnabled(true);
             controlErrores();
         }
     }//GEN-LAST:event_btIniciarActionPerformed
@@ -657,31 +659,34 @@ public class Isla extends javax.swing.JFrame {
 
     }
 
-    public void llegarIsla(int barco) {
+    public void llegarIsla(int barco, int limite) {
         switch (barco) {
             case 1:
                 lbPuerto.setIcon(imgBarcoUno);
                 this.lbB1Estado.setText("Ocupado");
+                this.lbB1Naufragos.setText(String.valueOf(limite));
                 System.out.println("Se desocupo el barco Uno");
                 break;
 
             case 2:
                 lbPuerto.setIcon(imgBarcoDos);
                 this.lbB2Estado.setText("Ocupado");
+                this.lbB2Naufragos.setText(String.valueOf(limite));
                 System.out.println("Se desocupo el barco Dos");
                 break;
 
             case 3:
                 lbPuerto.setIcon(imgBarcoTres);
                 this.lbB3Estado.setText("Ocupado");
+                this.lbB3Naufragos.setText(String.valueOf(limite));
                 System.out.println("Se desocupo el barco Tres");
                 break;
         }
 
         this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
         repaint();
-    }
-
+    }   
+   
     public void espera(int barco) {
         switch (barco) {
             case 1:
@@ -796,6 +801,8 @@ public class Isla extends javax.swing.JFrame {
             pause = true;
             lbPuerto.setIcon(imgOceano);
             repaint();
+            this.btParar.setEnabled(false);
+            this.inicioJuego = false;
             hB1.stop();
             hB2.stop();
             hB3.stop();
@@ -839,7 +846,7 @@ public class Isla extends javax.swing.JFrame {
     private javax.swing.JLabel lbB1Tiempo;
     private javax.swing.JLabel lbB2Capacidad;
     private javax.swing.JLabel lbB2Estado;
-    private javax.swing.JLabel lbB2Naufrago;
+    private javax.swing.JLabel lbB2Naufragos;
     private javax.swing.JLabel lbB2Tiempo;
     private javax.swing.JLabel lbB3Capacidad;
     private javax.swing.JLabel lbB3Estado;
