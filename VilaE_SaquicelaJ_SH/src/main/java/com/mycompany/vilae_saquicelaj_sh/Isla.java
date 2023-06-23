@@ -542,13 +542,14 @@ public class Isla extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
-        if (inicioJuego) {
-            pause = false;
-            
-        } else {
+        pause = false;
+        if (!inicioJuego) {
             this.btParar.setEnabled(true);
-            controlErrores();
+            controlErrores();            
+        }else{
+            reanudarJuego();
         }
+        
     }//GEN-LAST:event_btIniciarActionPerformed
 
     private void txtCapacidadIslaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCapacidadIslaActionPerformed
@@ -557,6 +558,10 @@ public class Isla extends javax.swing.JFrame {
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         pause = true;
+        hB1.stop();
+        hB2.stop();
+        hB3.stop();
+        JOptionPane.showMessageDialog(null,"Los barcos se detendrán en breve");
     }//GEN-LAST:event_btPararActionPerformed
 
     private void txtBTTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBTTiempoActionPerformed
@@ -685,8 +690,8 @@ public class Isla extends javax.swing.JFrame {
 
         this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
         repaint();
-    }   
-   
+    }
+
     public void espera(int barco) {
         switch (barco) {
             case 1:
@@ -746,7 +751,6 @@ public class Isla extends javax.swing.JFrame {
 
             return;
         }
-
         inicioJuego = true;
         iniciaElJuego();
 
@@ -810,6 +814,25 @@ public class Isla extends javax.swing.JFrame {
 
     }
 
+    public void reanudarJuego() {
+        int numNaufragos = Integer.valueOf(this.lbNaufragos.getText());
+        int limiteB1 = Integer.valueOf(this.lbB1Capacidad.getText());
+        int limiteB2 = Integer.valueOf(this.lbB2Capacidad.getText());
+        int limiteB3 = Integer.valueOf(this.lbB3Capacidad.getText());
+
+        int tB1 = Integer.valueOf(this.lbB1Tiempo.getText());
+        int tB2 = Integer.valueOf(this.lbB2Tiempo.getText());
+        int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());        
+
+        iNaufragos = new IslaNaufragos(islita, numNaufragos);
+        hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
+        hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
+        hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
+
+        hB1.start();
+        hB2.start();
+        hB3.start();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btIniciar;
