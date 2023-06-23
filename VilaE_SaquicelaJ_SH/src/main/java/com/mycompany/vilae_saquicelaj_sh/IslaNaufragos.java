@@ -4,7 +4,10 @@
  */
 package com.mycompany.vilae_saquicelaj_sh;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.LinkedList;
+import java.util.Timer;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,17 +28,19 @@ public class IslaNaufragos {
 
     public synchronized void desenbarcoUno(int limite, int tiempo) {
         if ((ocupado == false)) {
+
             try {
+                principal.tiempoBarco(1);
                 System.out.println("Capacidad del barco 1: " + limite);
                 numNaufragos -= limite;
-                
+
                 if (numNaufragos <= 0) {
                     numNaufragos = 0;
                     principal.sinNaufragos();
                     return;
                 }
 
-                principal.llegarIsla(1,limite);
+                principal.llegarIsla(1, limite);
                 ocupado = true;
                 System.out.println("1) Se notificará que ocupado = " + ocupado);
                 notifyAll();
@@ -64,6 +69,7 @@ public class IslaNaufragos {
     public synchronized void desenbarcoDos(int limite, int tiempo) {
         if ((ocupado == false)) {
             try {
+                principal.tiempoBarco(2);
                 System.out.println("Capacidad del barco 2: " + limite);
                 numNaufragos -= limite;
                 if (numNaufragos <= 0) {
@@ -71,9 +77,8 @@ public class IslaNaufragos {
                     principal.sinNaufragos();
                     return;
                 }
-                
 
-                principal.llegarIsla(2,limite);
+                principal.llegarIsla(2, limite);
                 ocupado = true;
                 System.out.println("2) Se notificará que ocupado = " + ocupado);
                 notifyAll();
@@ -103,15 +108,16 @@ public class IslaNaufragos {
     public synchronized void desenbarcoTres(int limite, int tiempo) {
         if ((ocupado == false)) {
             try {
+                principal.tiempoBarco(3);
                 System.out.println("Capacidad del barco 3: " + limite);
                 numNaufragos -= limite;
                 if (numNaufragos <= 0) {
                     numNaufragos = 0;
                     principal.sinNaufragos();
                     return;
-                }                
+                }
 
-                principal.llegarIsla(3,limite);
+                principal.llegarIsla(3, limite);
                 ocupado = true;
                 System.out.println("3) Se notificará que ocupado = " + ocupado);
                 notifyAll();
@@ -136,7 +142,7 @@ public class IslaNaufragos {
             }
         }
     }
-   
+
     public boolean isOcupado() {
         return ocupado;
     }

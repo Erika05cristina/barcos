@@ -5,6 +5,10 @@
 package com.mycompany.vilae_saquicelaj_sh;
 
 import java.awt.Image;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.Timer;
+import java.util.TimerTask;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
@@ -47,6 +51,7 @@ public class Isla extends javax.swing.JFrame {
         initComponents();
         iniciarImgs();
         islita = this;
+
     }
 
     /**
@@ -541,6 +546,53 @@ public class Isla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    public void tiempoBarco(int barco) {
+
+        int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
+        int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
+        int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
+
+        switch (barco) {
+            case 1:
+                temporizador(tB1);
+
+                break;
+            case 2:
+
+                temporizador(tB2);
+
+                break;
+            case 3:
+
+                temporizador(tB3);
+
+                break;
+
+        }
+
+    }
+Timer timer = new Timer();
+    public void temporizador(int tiempo) {
+
+        
+        TimerTask tarea = new TimerTask() {
+            int contador = tiempo;
+
+            public void run() {
+                if (contador >= 0) {
+                    lbTiempoRestante.setText(String.valueOf(contador));
+                    contador--;
+                } else {
+//                    lbTiempoRestante.setText("0");
+                    timer.cancel(); // Detener el temporizador
+                }
+            }
+        };
+
+        timer.scheduleAtFixedRate(tarea, 0, 1000);
+    }
+
+
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         pause = false;
         if (!inicioJuego) {
@@ -562,6 +614,7 @@ public class Isla extends javax.swing.JFrame {
         hB2.stop();
         hB3.stop();
         JOptionPane.showMessageDialog(null, "Los barcos se detendrán en breve");
+        
     }//GEN-LAST:event_btPararActionPerformed
 
     private void txtBTTiempoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtBTTiempoActionPerformed
@@ -761,17 +814,17 @@ public class Isla extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Datos invalidos! \nIsla");
             return;
         }
-            //tiempo
+        //tiempo
         if (!this.txtBUTiempo.getText().matches("[1-9]")) {
             JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 1");
             return;
         }
-        
+
         if (!this.txtBDTiempo.getText().matches("[1-9]")) {
             JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 2");
             return;
         }
-        
+
         if (!this.txtBTTiempo.getText().matches("[1-9]")) {
             JOptionPane.showMessageDialog(null, "Dato invalidos!\nEs texto o un tiempo largo \nBarco 3");
             return;
@@ -817,7 +870,7 @@ public class Isla extends javax.swing.JFrame {
         this.lbB3Tiempo.setText(String.valueOf(tB3));
 
         // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
-        //this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
+//        this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
     }
 
     public void sinNaufragos() {
