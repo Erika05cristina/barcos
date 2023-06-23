@@ -13,67 +13,82 @@ import java.util.logging.Logger;
  * @author Jonna
  */
 public class IslaNaufragos {
+
     private int numNaufragos;
     private boolean ocupado = false;
-    private Isla principal;
+    private Isla principal; //Formulario principal del programa
 
     public IslaNaufragos(Isla principal, int numNaufragos) {
         this.principal = principal;
         this.numNaufragos = numNaufragos;
-    }   
-    
-    public synchronized void desenbarcoUno(int limite, int tiempo){        
-        if( (ocupado == false)){
-            if (limite < numNaufragos) {
+    }
+
+    public synchronized void desenbarcoUno(int limite, int tiempo) {
+        if ((ocupado == false)) {
+            try {
                 System.out.println("Capacidad del barco 1: " + limite);
                 numNaufragos -= limite;
+                
+                if (numNaufragos <= 0) {
+                    numNaufragos = 0;
+                    principal.sinNaufragos();
+                    return;
+                }
+
                 principal.llegarIsla(1);
                 ocupado = true;
-                System.out.println("1) Se notificará que ocupado = " + ocupado);                
-                notifyAll(); 
-                
-                try {
-                    principal.desembarcar(1);
-                    Thread.sleep(tiempo);                    
-                    ocupado = false;
-                    System.out.println("1)  Se notificará que ocupado = " + ocupado);
-                    notifyAll();
-                    
-                } catch (InterruptedException ex) {Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);}                
+                System.out.println("1) Se notificará que ocupado = " + ocupado);
+                notifyAll();
+
+                Thread.sleep(tiempo);
+                ocupado = false;
+                System.out.println("1)  Se notificará que ocupado = " + ocupado);
+                notifyAll();
+
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
-                        
-        }else{
+
+        } else {
             try {
                 //Hay un barco en el puerto
                 System.out.println("\n    ** Barco Uno esperando");
                 principal.espera(1);
                 wait();
-            } catch (InterruptedException ex) {Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);}
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
+            }
         }
     }
-    public synchronized void desenbarcoDos(int limite, int tiempo){        
-        if( (ocupado == false)){
-            
-            if (limite < numNaufragos) {
+
+    public synchronized void desenbarcoDos(int limite, int tiempo) {
+        if ((ocupado == false)) {
+            try {
                 System.out.println("Capacidad del barco 2: " + limite);
                 numNaufragos -= limite;
+                if (numNaufragos <= 0) {
+                    numNaufragos = 0;
+                    principal.sinNaufragos();
+                    return;
+                }
+                
+
                 principal.llegarIsla(2);
                 ocupado = true;
                 System.out.println("2) Se notificará que ocupado = " + ocupado);
                 notifyAll();
-                
-                try {
-                    principal.desembarcar(2);
-                    Thread.sleep(tiempo);                    
-                    ocupado = false;
-                    System.out.println("2)  Se notificará que ocupado = " + ocupado);
-                    notifyAll();
-                    
-                } catch (InterruptedException ex) {Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);}                
+
+                Thread.sleep(tiempo);
+                ocupado = false;
+                System.out.println("2)  Se notificará que ocupado = " + ocupado);
+                notifyAll();
+
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
-                        
-        }else{            
-            
+
+        } else {
+
             try {
                 //Hay un barco en el puerto
                 System.out.println("\n    -- Barco Dos esperando");
@@ -84,38 +99,44 @@ public class IslaNaufragos {
             }
         }
     }
-    public synchronized void desenbarcoTres(int limite, int tiempo){        
-        if( (ocupado == false)){
-            if (limite < numNaufragos) {
+
+    public synchronized void desenbarcoTres(int limite, int tiempo) {
+        if ((ocupado == false)) {
+            try {
                 System.out.println("Capacidad del barco 3: " + limite);
                 numNaufragos -= limite;
+                if (numNaufragos <= 0) {
+                    numNaufragos = 0;
+                    principal.sinNaufragos();
+                    return;
+                }                
+
                 principal.llegarIsla(3);
                 ocupado = true;
                 System.out.println("3) Se notificará que ocupado = " + ocupado);
                 notifyAll();
-                
-                try {
-                    principal.desembarcar(3);
-                    Thread.sleep(tiempo);                    
-                    ocupado = false;
-                    System.out.println("3)  Se notificará que ocupado = " + ocupado);
-                    notifyAll();
-                    
-                } catch (InterruptedException ex) {Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);}                
+
+                Thread.sleep(tiempo);
+                ocupado = false;
+                System.out.println("3)  Se notificará que ocupado = " + ocupado);
+                notifyAll();
+
+            } catch (InterruptedException ex) {
+                Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
-                        
-        }else{
+
+        } else {
             try {
                 //Hay un barco en el puerto
                 System.out.println("\n    ++ Barco Tres esperando");
-                 principal.espera(3);
+                principal.espera(3);
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(IslaNaufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }
-
+   
     public boolean isOcupado() {
         return ocupado;
     }
@@ -139,7 +160,5 @@ public class IslaNaufragos {
     public void setPrincipal(Isla principal) {
         this.principal = principal;
     }
-    
-    
-    
+
 }

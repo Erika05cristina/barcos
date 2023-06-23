@@ -32,6 +32,7 @@ public class Isla extends javax.swing.JFrame {
     Icon imgBarcoDos;
     Icon imgBarcoTres;
     Icon imgIsla;
+    Icon imgOceano;
 
     Isla islita;
     IslaNaufragos iNaufragos;
@@ -643,10 +644,16 @@ public class Isla extends javax.swing.JFrame {
                 Image.SCALE_DEFAULT));
         lbIsla.setIcon(imgIsla);
 
-        //
+        // PUERTO
+        icono = new ImageIcon("oceano.jpg");
         lbPuerto = new JLabel();
         lbPuerto.setBounds(0, 0, this.pPuerto.getWidth(), this.pPuerto.getHeight());
         this.pPuerto.add(lbPuerto);
+
+        imgOceano = new ImageIcon(icono.getImage().getScaledInstance(this.lbPuerto.getWidth(),
+                this.lbPuerto.getHeight(),
+                Image.SCALE_DEFAULT));
+        lbPuerto.setIcon(imgOceano);
 
     }
 
@@ -670,6 +677,7 @@ public class Isla extends javax.swing.JFrame {
                 System.out.println("Se desocupo el barco Tres");
                 break;
         }
+
         this.lbNaufragos.setText(String.valueOf(iNaufragos.getNumNaufragos()));
         repaint();
     }
@@ -686,20 +694,6 @@ public class Isla extends javax.swing.JFrame {
                 this.lbB3Estado.setText("Esperando");
                 break;
 
-        }
-    }
-
-    public void desembarcar(int barco) {
-        switch (barco) {
-            case 1:
-                this.lbB1Estado.setText("Ocupado");
-                break;
-            case 2:
-                this.lbB1Estado.setText("Ocupado");
-                break;
-            case 3:
-                this.lbB1Estado.setText("Ocupado");
-                break;
         }
     }
 
@@ -789,6 +783,24 @@ public class Isla extends javax.swing.JFrame {
 
         // this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
         //this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
+    }
+
+    public void sinNaufragos() {
+        if (!pause) {
+            JOptionPane.showMessageDialog(null, "Se han rescatado todos los naufragos :)");
+            System.out.println("Sin naufragos");
+            this.lbB1Estado.setText("Finalizado");
+            this.lbB2Estado.setText("Finalizado");
+            this.lbB3Estado.setText("Finalizado");
+            this.lbNaufragos.setText("0");
+            pause = true;
+            lbPuerto.setIcon(imgOceano);
+            repaint();
+            hB1.stop();
+            hB2.stop();
+            hB3.stop();
+        }
+
     }
 
 
