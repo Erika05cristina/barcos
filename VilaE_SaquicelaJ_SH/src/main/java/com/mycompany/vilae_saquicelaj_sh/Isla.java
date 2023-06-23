@@ -10,6 +10,7 @@ import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -396,7 +397,7 @@ public class Isla extends javax.swing.JFrame {
                                         .addComponent(jLabel27)
                                         .addGap(18, 18, 18)
                                         .addComponent(txtCapacidadIsla, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                        .addContainerGap(62, Short.MAX_VALUE))
+                        .addContainerGap(74, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtBTTiempo, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -415,7 +416,7 @@ public class Isla extends javax.swing.JFrame {
                                         .addComponent(lbTiempoRestante, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(18, 18, 18)
                                         .addComponent(jLabel15)))))
-                        .addGap(0, 0, Short.MAX_VALUE))))
+                        .addGap(0, 35, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -542,9 +543,8 @@ public class Isla extends javax.swing.JFrame {
     private void btIniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btIniciarActionPerformed
         if (inicioJuego) {
             pause = false;
-        } else {
-            inicioJuego = true;
-            iniciaElJuego();
+        } else {            
+            controlErrores();
         }
     }//GEN-LAST:event_btIniciarActionPerformed
 
@@ -687,7 +687,56 @@ public class Isla extends javax.swing.JFrame {
     public void desembarcar() {
 
     }
-
+    public void controlErrores(){
+        
+        if(this.txtBUCapacidad.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 1");
+            this.txtBUCapacidad.setFocusable(true);
+            return;
+        }
+        
+        if(this.txtBDCapacidad.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 2");
+            this.txtBUCapacidad.setFocusable(true);
+            return;
+        }
+        
+        if(this.txtBDCapacidad.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 3");
+            this.txtBTCapacidad.setFocusable(true);
+            return;
+        }
+        // TIEMPO
+        if(this.txtBUTiempo.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 1");
+            this.txtBUTiempo.setFocusable(true);
+            return;
+        }
+        
+        if(this.txtBDTiempo.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto! \nBarco 2");
+            this.txtBUTiempo.setFocusable(true);
+            return;
+        }
+        
+        if(this.txtBTTiempo.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto!\nBarco 3");
+            this.txtBTTiempo.setFocusable(true);
+            return;
+        }
+        //CAPACIDAD ISLA
+        if(this.txtCapacidadIsla.getText().equals("")){
+            JOptionPane.showMessageDialog(null,"Dato incompleto Capacidad Isla!");
+            //this.txtCapacidadIsla.setCursor();
+            
+            return;
+        }
+        
+        inicioJuego = true;
+        iniciaElJuego();
+        
+    }
+    
     public void iniciaElJuego() {
         int numNaufragos = Integer.valueOf(this.txtCapacidadIsla.getText());
         int limiteB1 = Integer.valueOf(this.txtBUCapacidad.getText());
