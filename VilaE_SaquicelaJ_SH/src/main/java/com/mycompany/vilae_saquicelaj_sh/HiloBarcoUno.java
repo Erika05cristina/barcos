@@ -27,11 +27,11 @@ public class HiloBarcoUno extends Thread {
     public void run() {
         int empezar;
         int capacidad;
-        while (isla.getPrincipal().pause == false) {            
+        while (isla.getPrincipal().pause == false) {
             capacidad = (int) (Math.random() * capacidadMaxima);
-            empezar = (int) ((Math.random() * 50)+1);
+            empezar = (int) ((Math.random() * 50) + 1);
             try {
-                System.out.println("    +El barco 1 empezara en: " + empezar);
+                //System.out.println("    +El barco 1 empezara en: " + empezar);
                 HiloBarcoUno.sleep(empezar);
                 isla.desenbarcoUno(capacidad, (tiempo * 1000));
 
@@ -40,14 +40,5 @@ public class HiloBarcoUno extends Thread {
             }
         }
 
-    }
-    public void dormir(){
-        try {
-            System.out.println(" - Se dormirá el Barco 1" + (tiempo*1000) + "s");
-            HiloBarcoUno.sleep(tiempo);
-            isla.notificar();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(HiloBarcoTres.class.getName()).log(Level.SEVERE, null, ex);
-        }
     }
 }

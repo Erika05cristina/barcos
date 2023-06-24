@@ -13,9 +13,6 @@ import java.util.logging.Logger;
  */
 public class Naufragos {
 
-    private HiloBarcoUno hb1;
-    private HiloBarcoDos hb2;
-    private HiloBarcoTres hb3;
     private int numNaufragos;
     private boolean ocupado = false;
     private Isla principal; //Formulario principal del programa
@@ -35,29 +32,23 @@ public class Naufragos {
             }
             numNaufragos -= limite;
             principal.llegarIsla(barco, limite);
-
             Thread.sleep(tiempo);
-            //notificar();
-            //ocupado = false;
+            System.out.println("Se notificará");
+            notifyAll();
 
         } catch (InterruptedException ex) {
             Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
         }
-        System.out.println("Se notificará");
-        //notifyAll();
+
     }
 
-    public synchronized void desenbarcoUno(int limite, int tiempo) {
-        System.out.println("Barco uno, atributo ocupado: " + ocupado);
+    public synchronized void desenbarcoUno(int limite, int tiempoUno) {
 
         if (ocupado) {
-            System.out.println("Va a espererar el barco 1");
             try {
-                //Hay un barco en el puerto
-                System.out.println("\n    ** Barco Uno esperando");
+                //Hay un barco en el puerto               
                 principal.espera(1);
                 ocupado = false;
-                System.out.println("atributo ocupado: " + ocupado);
                 wait();
 
             } catch (InterruptedException ex) {
@@ -65,62 +56,50 @@ public class Naufragos {
             }
         } else {
             ocupado = true;
-            System.out.println("Llego el barco 1");
-            moverBarco(1, tiempo, limite);
+            moverBarco(1, tiempoUno, limite);
 
         }
 
     }
 
-    public synchronized void desenbarcoDos(int limite, int tiempo) {
-        System.out.println("Barco dos, atributo ocupado: " + ocupado);
+    public synchronized void desenbarcoDos(int limite, int tiempoDos) {
         if (ocupado) {
             try {
-                //Hay un barco en el puerto
-                System.out.println("\n    -- Barco Dos esperando");
+                //Hay un barco en el puerto                
                 principal.espera(2);
-
                 ocupado = false;
-                System.out.println("atributo ocupado: " + ocupado);
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             ocupado = true;
-            System.out.println("Llego el barco 2");
-            moverBarco(2, tiempo, limite);
+
+            moverBarco(2, tiempoDos, limite);
 
         }
 
     }
 
-    public synchronized void desenbarcoTres(int limite, int tiempo) {
-        System.out.println("Barco tres, atributo ocupado: " + ocupado);
+    public synchronized void desenbarcoTres(int limite, int tiempoTres) {
+
         if (ocupado) {
             try {
                 //Hay un barco en el puerto
-                System.out.println("\n    ++ Barco Tres esperando");
                 principal.espera(3);
-
                 ocupado = false;
-                System.out.println("atributo ocupado: " + ocupado);
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
             ocupado = true;
-            System.out.println("Llego el barco 3");
-            moverBarco(3, tiempo, limite);
+
+            moverBarco(3, tiempoTres, limite);
         }
 
     }
-
-    public synchronized void notificar() {
-        notifyAll();
-        System.out.println("Se notificó");
-    }
+  
 
     public boolean isOcupado() {
         return ocupado;
@@ -144,30 +123,6 @@ public class Naufragos {
 
     public void setPrincipal(Isla principal) {
         this.principal = principal;
-    }
-
-    public HiloBarcoUno getHb1() {
-        return hb1;
-    }
-
-    public void setHb1(HiloBarcoUno hb1) {
-        this.hb1 = hb1;
-    }
-
-    public HiloBarcoDos getHb2() {
-        return hb2;
-    }
-
-    public void setHb2(HiloBarcoDos hb2) {
-        this.hb2 = hb2;
-    }
-
-    public HiloBarcoTres getHb3() {
-        return hb3;
-    }
-
-    public void setHb3(HiloBarcoTres hb3) {
-        this.hb3 = hb3;
     }
 
 }

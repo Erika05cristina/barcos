@@ -750,15 +750,12 @@ public class Isla extends javax.swing.JFrame {
     public void espera(int barco) {
         switch (barco) {
             case 1:
-                System.out.println("---Barco 1 Esperando");
                 this.lbB1Estado.setText("Esperando");
                 break;
             case 2:
-                System.out.println("+++Barco 2 Esperando");
                 this.lbB2Estado.setText("Esperando");
                 break;
             case 3:
-                System.out.println("***Barco 3 Esperando");
                 this.lbB3Estado.setText("Esperando");
                 break;
 
@@ -852,15 +849,11 @@ public class Isla extends javax.swing.JFrame {
 
         this.lbNaufragos.setText(txtCapacidadIsla.getText());
 
-        iNaufragos = new Naufragos(numNaufragos,islita);
+        iNaufragos = new Naufragos(numNaufragos, islita);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
-        
-        iNaufragos.setHb1(hB1);
-        iNaufragos.setHb2(hB2);
-        iNaufragos.setHb3(hB3);
-        
+
         hB1.start();
         hB2.start();
         hB3.start();
@@ -878,8 +871,14 @@ public class Isla extends javax.swing.JFrame {
         this.lbB3Capacidad.setText(String.valueOf(limiteB3));
         this.lbB3Tiempo.setText(String.valueOf(tB3));
 
-//        this.lbB1Capacidad.setText(this.txtBDCapacidad.getTex());
-//        this.lbB1Tiempo.setText(String.valueOf(this.txtBDTiempo.getTex()));
+        this.lbB1Estado.setText("Esperando");
+        this.lbB2Estado.setText("Esperando");
+        this.lbB3Estado.setText("Esperando");
+        try {
+            Thread.sleep(4);
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Isla.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     public void sinNaufragos() {
@@ -912,14 +911,10 @@ public class Isla extends javax.swing.JFrame {
         int tB2 = Integer.valueOf(this.lbB2Tiempo.getText());
         int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());
 
-        iNaufragos = new Naufragos(numNaufragos,islita);
+        iNaufragos = new Naufragos(numNaufragos, islita);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
-        
-        iNaufragos.setHb1(hB1);
-        iNaufragos.setHb2(hB2);
-        iNaufragos.setHb3(hB3);
 
         hB1.start();
         hB2.start();
