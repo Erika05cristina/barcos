@@ -13,31 +13,41 @@ import java.util.logging.Logger;
  */
 public class HiloBarcoUno extends Thread {
 
-    IslaNaufragos isla;
+    Naufragos isla;
     int capacidadMaxima;
     int tiempo;
-    
 
-    public HiloBarcoUno(IslaNaufragos isla, int capacidadMaxima, int tiempo) {
+    public HiloBarcoUno(Naufragos isla, int capacidadMaxima, int tiempo) {
         this.isla = isla;
         this.capacidadMaxima = capacidadMaxima;
         this.tiempo = tiempo;
     }
 
     @Override
-    public void run() {        
-
-        while (isla.getPrincipal().pause == false) {
-            //tiempo = (Math.random()*(valorMinimo - valorMaximo)+ ValorMaximo);
-            int capacidad = (int) (Math.random() * capacidadMaxima);
-            try {                
-                Thread.sleep(4);
-                isla.desenbarcoUno(capacidad, (tiempo*1000));
+    public void run() {
+        int empezar;
+        int capacidad;
+        while (isla.getPrincipal().pause == false) {            
+            capacidad = (int) (Math.random() * capacidadMaxima);
+            empezar = (int) ((Math.random() * 50)+1);
+            try {
+                System.out.println("    +El barco 1 empezara en: " + empezar);
+                HiloBarcoUno.sleep(empezar);
+                isla.desenbarcoUno(capacidad, (tiempo * 1000));
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(HiloBarcoUno.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
 
+    }
+    public void dormir(){
+        try {
+            System.out.println(" - Se dormirá el Barco 1" + (tiempo*1000) + "s");
+            HiloBarcoUno.sleep(tiempo);
+            isla.notificar();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(HiloBarcoTres.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 }

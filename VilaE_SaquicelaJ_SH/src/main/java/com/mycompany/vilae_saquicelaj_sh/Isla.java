@@ -40,7 +40,9 @@ public class Isla extends javax.swing.JFrame {
     Icon imgOceano;
 
     Isla islita;
-    IslaNaufragos iNaufragos;
+    Naufragos iNaufragos;
+
+    Timer t;
 
     Boolean inicioJuego = false;
     Boolean pause = false;
@@ -547,32 +549,28 @@ public class Isla extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    public void tiempoBarco(int barco) {
+    public void tiempoBarco(int barco, int tiempo) {
 
-        int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
-        int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
-        int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
-
+//        int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
+//        int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
+//        int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
         switch (barco) {
             case 1:
-                temporizador(tB1);
+                temporizador((tiempo / 1000));
                 iniciarTemp();
                 break;
             case 2:
-
-                temporizador(tB2);
+                temporizador((tiempo / 1000));
                 iniciarTemp();
                 break;
             case 3:
-
-                temporizador(tB3);
+                temporizador((tiempo / 1000));
                 iniciarTemp();
                 break;
 
         }
 
     }
-    Timer t;
 
     int contador;
 
@@ -730,21 +728,18 @@ public class Isla extends javax.swing.JFrame {
                 lbPuerto.setIcon(imgBarcoUno);
                 this.lbB1Estado.setText("Ocupado");
                 this.lbB1Naufragos.setText(String.valueOf(limite));
-                System.out.println("Se desocupo el barco Uno");
                 break;
 
             case 2:
                 lbPuerto.setIcon(imgBarcoDos);
                 this.lbB2Estado.setText("Ocupado");
                 this.lbB2Naufragos.setText(String.valueOf(limite));
-                System.out.println("Se desocupo el barco Dos");
                 break;
 
             case 3:
                 lbPuerto.setIcon(imgBarcoTres);
                 this.lbB3Estado.setText("Ocupado");
                 this.lbB3Naufragos.setText(String.valueOf(limite));
-                System.out.println("Se desocupo el barco Tres");
                 break;
         }
 
@@ -755,15 +750,18 @@ public class Isla extends javax.swing.JFrame {
     public void espera(int barco) {
         switch (barco) {
             case 1:
+                System.out.println("---Barco 1 Esperando");
                 this.lbB1Estado.setText("Esperando");
                 break;
             case 2:
+                System.out.println("+++Barco 2 Esperando");
                 this.lbB2Estado.setText("Esperando");
                 break;
             case 3:
+                System.out.println("***Barco 3 Esperando");
                 this.lbB3Estado.setText("Esperando");
                 break;
-                
+
         }
     }
 
@@ -854,11 +852,15 @@ public class Isla extends javax.swing.JFrame {
 
         this.lbNaufragos.setText(txtCapacidadIsla.getText());
 
-        iNaufragos = new IslaNaufragos(islita, numNaufragos);
+        iNaufragos = new Naufragos(numNaufragos,islita);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
-
+        
+        iNaufragos.setHb1(hB1);
+        iNaufragos.setHb2(hB2);
+        iNaufragos.setHb3(hB3);
+        
         hB1.start();
         hB2.start();
         hB3.start();
@@ -910,10 +912,14 @@ public class Isla extends javax.swing.JFrame {
         int tB2 = Integer.valueOf(this.lbB2Tiempo.getText());
         int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());
 
-        iNaufragos = new IslaNaufragos(islita, numNaufragos);
+        iNaufragos = new Naufragos(numNaufragos,islita);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
+        
+        iNaufragos.setHb1(hB1);
+        iNaufragos.setHb2(hB2);
+        iNaufragos.setHb3(hB3);
 
         hB1.start();
         hB2.start();
