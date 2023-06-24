@@ -645,15 +645,11 @@ public class Isla extends javax.swing.JFrame {
     }//GEN-LAST:event_txtCapacidadIslaActionPerformed
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
-        pause = true;
-        try {
-            hiloReloj.wait();
-        } catch (InterruptedException ex) {
-            Logger.getLogger(Isla.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        pause = true;        
         hB1.stop();
         hB2.stop();
         hB3.stop();
+        hiloReloj.stop();
         JOptionPane.showMessageDialog(null, "Los barcos se detendrán en breve");
 
     }//GEN-LAST:event_btPararActionPerformed
@@ -946,16 +942,19 @@ public class Isla extends javax.swing.JFrame {
         int tB1 = Integer.valueOf(this.lbB1Tiempo.getText());
         int tB2 = Integer.valueOf(this.lbB2Tiempo.getText());
         int tB3 = Integer.valueOf(this.lbB3Tiempo.getText());
+        int tG = Integer.valueOf(this.lbTiempoRestante.getText());
 
         iNaufragos = new Naufragos(numNaufragos, islita);
         hB1 = new HiloBarcoUno(iNaufragos, limiteB1, tB1);
         hB2 = new HiloBarcoDos(iNaufragos, limiteB2, tB2);
         hB3 = new HiloBarcoTres(iNaufragos, limiteB3, tB3);
+        hiloReloj = new HiloReloj(tG);
 
         hB1.start();
         hB2.start();
         hB3.start();
-        hiloReloj.resume();
+        hiloReloj.start();
+        //hiloReloj.resume();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
