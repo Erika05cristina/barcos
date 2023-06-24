@@ -17,6 +17,10 @@ public class Naufragos {
     private boolean ocupado = false;
     private Isla principal; //Formulario principal del programa
 
+    private boolean b1 = false;
+    private boolean b2 = false;
+    private boolean b3 = false;
+
     public Naufragos(int numNaufragos, Isla principal) {
         this.numNaufragos = numNaufragos;
         this.principal = principal;
@@ -32,8 +36,7 @@ public class Naufragos {
             }
             numNaufragos -= limite;
             principal.llegarIsla(barco, limite);
-            Thread.sleep(tiempo);
-            System.out.println("Se notificará");
+            Thread.sleep(tiempo);            
             notifyAll();
 
         } catch (InterruptedException ex) {
@@ -49,14 +52,21 @@ public class Naufragos {
                 //Hay un barco en el puerto               
                 principal.espera(1);
                 ocupado = false;
+                System.out.println("Barco 1 esperando");
                 wait();
 
             } catch (InterruptedException ex) {
                 Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            ocupado = true;
-            moverBarco(1, tiempoUno, limite);
+            //Evitar de que el barco rescate 2 o más veces seguidas
+            if (b1 == false) {
+                ocupado = true;
+                b1 = true;
+                b2 = false;
+                b3 = false;
+                moverBarco(1, tiempoUno, limite);
+            }
 
         }
 
@@ -68,15 +78,20 @@ public class Naufragos {
                 //Hay un barco en el puerto                
                 principal.espera(2);
                 ocupado = false;
+                System.out.println("Barco 2 esperando");
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            ocupado = true;
-
-            moverBarco(2, tiempoDos, limite);
-
+            //Evitar de que el barco rescate 2 o más veces seguidas
+            if (b2 == false) {
+                ocupado = true;
+                b1 = false;
+                b2 = true;
+                b3 = false;
+                moverBarco(2, tiempoDos, limite);
+            }
         }
 
     }
@@ -88,18 +103,23 @@ public class Naufragos {
                 //Hay un barco en el puerto
                 principal.espera(3);
                 ocupado = false;
+                System.out.println("Barco 3 esperando");
                 wait();
             } catch (InterruptedException ex) {
                 Logger.getLogger(Naufragos.class.getName()).log(Level.SEVERE, null, ex);
             }
         } else {
-            ocupado = true;
-
-            moverBarco(3, tiempoTres, limite);
+            //Evitar de que el barco rescate 2 o más veces seguidas
+            if (b3 == false) {
+                ocupado = true;
+                b1 = false;
+                b2 = false;
+                b3 = true;
+                moverBarco(3, tiempoTres, limite);
+            }            
         }
 
     }
-  
 
     public boolean isOcupado() {
         return ocupado;
