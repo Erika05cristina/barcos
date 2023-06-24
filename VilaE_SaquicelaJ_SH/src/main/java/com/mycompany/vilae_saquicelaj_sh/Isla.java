@@ -43,6 +43,7 @@ public class Isla extends javax.swing.JFrame {
     Naufragos iNaufragos;
 
     Timer t;
+    HiloReloj hiloReloj;
 
     Boolean inicioJuego = false;
     Boolean pause = false;
@@ -551,13 +552,17 @@ public class Isla extends javax.swing.JFrame {
 
     public void tiempoBarco(int barco, int tiempo) {
 
-//        int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
-//        int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
-//        int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
+        //int tB1 = Integer.valueOf(this.txtBUTiempo.getText());
+        //int tB2 = Integer.valueOf(this.txtBDTiempo.getText());
+        //int tB3 = Integer.valueOf(this.txtBTTiempo.getText());
+        hiloReloj = new HiloReloj((tiempo / 1000));
+        hiloReloj.start();
+        /*
         switch (barco) {
             case 1:
-                temporizador((tiempo / 1000));
-                iniciarTemp();
+
+                //temporizador((tiempo / 1000));
+                //iniciarTemp();
                 break;
             case 2:
                 temporizador((tiempo / 1000));
@@ -568,11 +573,37 @@ public class Isla extends javax.swing.JFrame {
                 iniciarTemp();
                 break;
 
-        }
+        }*/
 
     }
 
     int contador;
+
+    class HiloReloj extends Thread {
+
+        int tiempo;
+
+        public HiloReloj(int tiempo) {
+            this.tiempo = tiempo;
+        }
+
+        @Override
+        public void run() {
+
+            while (tiempo > 0) {
+                try {
+                    lbTiempoRestante.setText(String.valueOf(tiempo));
+                    hiloReloj.sleep(1000);
+                    tiempo--;
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(Isla.class.getName()).log(Level.SEVERE, null, ex);
+                }
+
+            }
+
+        }
+
+    }
 
     public void temporizador(int tiempo) {
         contador = tiempo;
@@ -615,6 +646,11 @@ public class Isla extends javax.swing.JFrame {
 
     private void btPararActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btPararActionPerformed
         pause = true;
+        try {
+            hiloReloj.wait();
+        } catch (InterruptedException ex) {
+            Logger.getLogger(Isla.class.getName()).log(Level.SEVERE, null, ex);
+        }
         hB1.stop();
         hB2.stop();
         hB3.stop();
@@ -919,6 +955,7 @@ public class Isla extends javax.swing.JFrame {
         hB1.start();
         hB2.start();
         hB3.start();
+        hiloReloj.resume();
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

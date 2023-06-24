@@ -28,12 +28,13 @@ public class Naufragos {
 
     public synchronized void moverBarco(int barco, int tiempo, int limite) {
         try {
-            principal.tiempoBarco(barco, tiempo);
+            
             if (numNaufragos <= 0) {
                 numNaufragos = 0;
                 principal.sinNaufragos();
                 return;
             }
+            principal.tiempoBarco(barco, tiempo);
             numNaufragos -= limite;
             principal.llegarIsla(barco, limite);
             Thread.sleep(tiempo);            
